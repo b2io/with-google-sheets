@@ -1,0 +1,27 @@
+{
+  "name": "with-google-sheets",
+  "author": "Base Two <info@base2.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/b2io/with-google-sheets.git"
+  },
+  "license": "MIT",
+  "version": "0.1.0",
+  "description": "A higher-order component to retrieve data from Google Sheets",
+  "main": "dist/with-google-sheets.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "recompose": "^0.25.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-preset-react-app": "^3.0.2",
+    "react": "^15.6.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.5.6"
+  }
+}

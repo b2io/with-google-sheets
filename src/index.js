@@ -1,0 +1,83 @@
+import { Component } from 'react';
+import { createEagerFactory, setDisplayName, wrapDisplayName } from 'recompose';
+
+const noop = () => {};
+const defaultMapValuesToProps = values => ({ data: values });
+
+const defaultConfig = {
+  discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+  scope: 'https://www.googleapis.com/auth/spreadsheets',
+};
+
+const withGoogleSheets = (
+  { sheetId, ...config },
+  ranges,
+  mapValuesToProps = defaultMapValuesToProps,
+) => BaseComponent => {
+  const factory = createEagerFactory(BaseComponent);
+
+  class WithGoogleSheets extends Component {
+    state = {
+      authorizing: false,
+      initializing: true,
+      loading: false,
+      mappedProps: {},
+    };
+
+    componentDidMount() {
+      global.gapi.load('client:auth2', this.handleLoad);
+    }
+
+    handleLoad = () => {
+      global.gapi.client.init({ ...defaultConfig, ...config }).then(() => {
+        const GoogleAuth = global.gapi.auth2.getAuthInstance();
+
+        GoogleAuth.isSignedIn.listen(this.handleAuth);
+        this.handleAuth(GoogleAuth.isSignedIn.get());
+      });
+    };
+
+    handleAuth = isAuthorized => {
+      if (isAuthorized) {
+        global.gapi.client.sheets.spreadsheets.values
+          .batchGet({ ranges, spreadsheetId: sheetId })
+          .then(response => {
+            const values = response.result.valueRanges.map(r => r.values);
+            const mappedProps = mapValuesToProps(values, ranges, this.props);
+
+            this.setState({ mappedProps, values, loading: false });
+          });
+      }
+
+      this.setState({
+        authorizing: !isAuthorized,
+        initializing: false,
+        loading: isAuthorized,
+      });
+    };
+
+    render() {
+      const signIn = !this.state.initializing
+        ? () => global.gapi.auth2.getAuthInstance().signIn()
+        : noop;
+      const { mappedProps, ...otherState } = this.state;
+
+      return factory({
+        ...this.props,
+        ...otherState,
+        ...mappedProps,
+        onSignIn: signIn,
+      });
+    }
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withGoogleSheets'))(
+      WithGoogleSheets,
+    );
+  }
+
+  return WithGoogleSheets;
+};
+
+export default withGoogleSheets;
