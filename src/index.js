@@ -2,11 +2,11 @@ import { Component } from 'react';
 import { createEagerFactory, setDisplayName, wrapDisplayName } from 'recompose';
 
 const noop = () => {};
-const defaultMapValuesToProps = values => ({ data: values });
+const defaultMapValuesToProps = values => ({ values });
 
 const defaultConfig = {
   discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-  scope: 'https://www.googleapis.com/auth/spreadsheets',
+  scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
 };
 
 const withGoogleSheets = (
@@ -45,7 +45,7 @@ const withGoogleSheets = (
             const values = response.result.valueRanges.map(r => r.values);
             const mappedProps = mapValuesToProps(values, ranges, this.props);
 
-            this.setState({ mappedProps, values, loading: false });
+            this.setState({ mappedProps, loading: false });
           });
       }
 

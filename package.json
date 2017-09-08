@@ -5,6 +5,10 @@
     "type": "git",
     "url": "git://github.com/b2io/with-google-sheets.git"
   },
+  "bugs": {
+    "url": "https://github.com/b2io/with-google-sheets/issues"
+  },
+  "homepage": "https://github.com/b2io/with-google-sheets#readme",
   "license": "MIT",
   "version": "0.1.3",
   "description": "A higher-order component to retrieve data from Google Sheets",
