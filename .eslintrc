@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "eslint-config-airbnb",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "import/extensions": [0],
+    "import/no-extraneous-dependencies": [0],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": true
+      }
+    ],
+    "react/jsx-filename-extension": [0]
+  }
+}

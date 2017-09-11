@@ -15,18 +15,45 @@
   "main": "dist/with-google-sheets.js",
   "scripts": {
     "build": "webpack",
-    "prepublish": "npm run build"
+    "lint": "eslint scripts src",
+    "prepublish": "npm run build",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "recompose": "^0.25.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^6.0.4",
+    "babel-jest": "^21.0.2",
     "babel-loader": "^7.1.2",
     "babel-plugin-lodash": "^3.2.11",
     "babel-preset-react-app": "^3.0.2",
+    "enzyme": "^2.9.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-prettier": "^1.7.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.0.1",
+    "eslint-plugin-react": "^6.10.3",
+    "jest": "^21.0.2",
+    "lodash": "^4.17.4",
+    "prettier": "^1.2.2",
     "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.5.6"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*-test.js"
+    ],
+    "coverageReporters": [
+      "text-summary",
+      "lcov"
+    ]
   }
 }

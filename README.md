@@ -2,6 +2,12 @@
 
 > A higher-order component to retrieve data from Google Sheets.
 
+[![build-status](https://img.shields.io/travis/b2io/with-google-sheets.svg?style=flat-square)](https://travis-ci.org/b2io/with-google-sheets)
+[![coverage](https://img.shields.io/codecov/c/github/b2io/with-google-sheets.svg?style=flat-square)](https://codecov.io/github/b2io/with-google-sheets)
+[![code climate](https://img.shields.io/codeclimate/github/b2io/with-google-sheets.svg?style=flat-square)](https://codeclimate.com/github/b2io/with-google-sheets)
+[![npm version](https://img.shields.io/npm/v/with-google-sheets.svg?style=flat-square)](https://www.npmjs.com/package/with-google-sheets)
+[![npm downloads](https://img.shields.io/npm/dm/with-google-sheets.svg?style=flat-square)](https://www.npmjs.com/package/with-google-sheets)
+
 ## Usage
 
 ### `withGoogleSheets()`

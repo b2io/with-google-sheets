@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    ["lodash", { "id": ["recompose"] }]
+  ],
+  "presets": [
+    "react-app"
+  ]
+}

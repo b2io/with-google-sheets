@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { createEagerFactory, setDisplayName, wrapDisplayName } from 'recompose';
 
-const noop = () => {};
+const signIn = () => global.gapi.auth2.getAuthInstance().signIn();
 const defaultMapValuesToProps = values => ({ values });
 
 const defaultConfig = {
@@ -57,9 +57,6 @@ const withGoogleSheets = (
     };
 
     render() {
-      const signIn = !this.state.initializing
-        ? () => global.gapi.auth2.getAuthInstance().signIn()
-        : noop;
       const { mappedProps, ...otherState } = this.state;
 
       return factory({

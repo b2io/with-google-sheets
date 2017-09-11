@@ -22,14 +22,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
-          options: {
-            babelrc: false,
-            compact: true,
-            plugins: [
-              [require.resolve('babel-plugin-lodash'), { id: ['recompose'] }],
-            ],
-            presets: [require.resolve('babel-preset-react-app')],
-          },
+          options: { compact: true },
         },
       },
     ],
