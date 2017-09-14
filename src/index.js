@@ -1,3 +1,4 @@
+// @flow
 import { Component } from 'react';
 import { createEagerFactory, setDisplayName, wrapDisplayName } from 'recompose';
 
@@ -9,14 +10,25 @@ const defaultConfig = {
   scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
 };
 
+type Params = {
+  sheetId: ?string,
+};
+
+type State = {
+  authorizing: boolean,
+  initializing: boolean,
+  loading: boolean,
+  mappedProps: Object,
+};
+
 const withGoogleSheets = (
-  { sheetId, ...config },
-  ranges,
-  mapValuesToProps = defaultMapValuesToProps,
-) => BaseComponent => {
+  { sheetId, ...config }: Params,
+  ranges: Array<string>,
+  mapValuesToProps: Function = defaultMapValuesToProps,
+) => (BaseComponent: Function) => {
   const factory = createEagerFactory(BaseComponent);
 
-  class WithGoogleSheets extends Component {
+  class WithGoogleSheets extends Component<{}, State> {
     state = {
       authorizing: false,
       initializing: true,
@@ -37,7 +49,7 @@ const withGoogleSheets = (
       });
     };
 
-    handleAuth = isAuthorized => {
+    handleAuth = (isAuthorized: boolean) => {
       if (isAuthorized) {
         global.gapi.client.sheets.spreadsheets.values
           .batchGet({ ranges, spreadsheetId: sheetId })

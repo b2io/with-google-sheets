@@ -15,6 +15,7 @@
   "main": "dist/with-google-sheets.js",
   "scripts": {
     "build": "webpack",
+    "flow": "flow",
     "lint": "eslint scripts src",
     "prepublish": "npm run build",
     "test": "jest --coverage",
@@ -39,7 +40,9 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.3",
-    "jest": "^21.0.2",
+    "flow-bin": "^0.54.1",
+    "jest": "^21.1.0",
+    "jest-cli": "^21.1.0",
     "lodash": "^4.17.4",
     "prettier": "^1.2.2",
     "react": "^15.6.1",
@@ -49,12 +52,7 @@
     "webpack": "^3.5.6"
   },
   "jest": {
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*-test.js"
-    ],
-    "coverageReporters": [
-      "text-summary",
-      "lcov"
-    ]
+    "testMatch": ["<rootDir>/src/**/__tests__/**/*-test.js"],
+    "coverageReporters": ["text-summary", "lcov"]
   }
 }
