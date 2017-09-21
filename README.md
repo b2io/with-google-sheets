@@ -77,7 +77,7 @@ const withAnimals = withGoogleSheets(
 );
 
 const withLoadingIndicator = branch(
-  props => props.initializing | props.loading,
+  props => props.initializing || props.loading,
   renderComponent(() => <span>Loading...</span>),
 );
 
